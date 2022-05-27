@@ -1,0 +1,45 @@
+body{
+    background-color: black;
+    font: 85% "courier new";
+    margin: 20px;
+    line-height: 26px;
+    color: #84c754
+     
+}
+#top{ padding: 15px;
+}
+#top h1, #top p{
+    margin: 0;
+}
+.item-menu:hover{
+    color:#84c754;
+    cursor: pointer;
+} 
+#main{
+    padding: 10px;
+}
+a{
+    color: white;
+}
+a:hover{
+color: white;
+}
+#sidebar{
+    position: absolute;
+    border: 1px solid white;
+    color: white;
+    top: 0;
+    right: 0;
+    width: 360px;
+    border-radius: 4px;
+    font-size: 75%;
+    text-align: left;
+    line-height: 18px;
+    margin: 70px;
+
+}
+   
+.wapper{
+    position: relative;
+}
+
