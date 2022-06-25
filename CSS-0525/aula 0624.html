@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de quiz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <style>
+        h1 {
+            text-align: center;
+            color: brown;
+        }
+
+        h2 {
+            background-color: rgb(95, 123, 160);
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        h3 {
+            background-color: rgb(233, 233, 233);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        h3:hover {
+            background-color: #cccccc;
+            cursor: pointer;
+        }
+
+        h3 span {
+            font-weight: bolder;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Gerenciar Perguntas QUIZ</h1>
+        <h2>
+            Pergunta?
+        </h2>
+        <h3>
+            <span>A</span>
+            Resposta
+        </h3>
+        <h3>
+            <span>B</span>
+            Resposta
+        </h3>
+        <h3>
+            <span>C</span>
+            Resposta
+        </h3>
+        <h3>
+            <span>D</span>
+            Resposta
+        </h3>
+        
+    </div>
+    
+        <div class="container">
+<form >
+<label class="radio-inline">
+<input type="radio" name="optradio" checked>Option 1
+</label>
+<label class="radio-inline">
+<input type="radio" name="optradio">Option 2
+</label>
+<label class="radio-inline">
+<input type="radio" name="optradio">Option 3
+</label>
+<label class="radio-inline">
+<input type="radio" name="optradio">Option 4
+</label>
+</form>
+</div>
+
+    
+    <div class="btn btn-primary" onclick="enviar()">
+        enviar
+    </div>
+    <script>
+
+        function verificarResposta(i) {
+            if (quiz.ponto >= 0) return;
+
+            document.querySelectorAll('h3')[i].style.backgroundColor = '#ff5555';
+            document.querySelectorAll('h3')[quiz.correta].style.backgroundColor = '#56c856';
+            if (i == quiz.correta) {
+                quiz.ponto = 1;
+            } else {
+                quiz.ponto = 0;
+            }
+        }
+
+        let lsPergunta = [
+            {
+                pergunta: "O que significa a sigal SENAI?",
+                respostas: ["Serviço Nacional de Aprendizadem Internacional", "Serviço Nuclear de Aprendizagem Industrial", "Serviço Nacional de Aprendizagem Industrial", "Saúde Nacional de Alunos Intelectuais"],
+                correta: 2
+            },
+           
+            
+            
+        ];
+        
+       
+        let quiz = {};
+        function carregarQuiz(nPergunta) {
+            quiz = lsPergunta[nPergunta];
+            document.querySelector('h2').innerHTML = quiz.pergunta;
+            for (let i = 0; i < 4; i++) {
+                document.querySelectorAll('h3')[i].style.backgroundColor = '#cccccc';
+                document.querySelectorAll('h3')[i].innerHTML = quiz.respostas[i];
+                let x = i;
+                document.querySelectorAll('h3')[i].addEventListener(
+                    'click', () => { verificarResposta(x) });
+            }
+        }
+        let quizAtual = 0;
+        carregarQuiz(quizAtual);
+        function next() {
+            // console.log(quizAtual);
+            // console.log(lsPergunta.length-1);
+            // console.log(quizAtual == lsPergunta.length-1);
+            if(quiz.ponto == undefined){
+                alert('Antes de ir para o próxima pergunta responda essa!');
+                return;
+            }
+            if(quizAtual == lsPergunta.length-1) return ;
+            carregarQuiz(++quizAtual);
+        }
+    </script>
+
+
+</body>
+
+</html>
