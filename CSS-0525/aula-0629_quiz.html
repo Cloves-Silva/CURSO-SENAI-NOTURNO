@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,14 @@
     <title>Jogo de quiz</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
+
 <body>
+
     <style>
         h1 {
             text-align: center;
         }
+
         h2 {
             background-color: cadetblue;
             padding: 15px;
@@ -19,19 +23,24 @@
             color: white;
             text-align: center;
         }
+
         h3 {
             background-color: rgb(233, 233, 233);
             padding: 15px;
             border-radius: 15px;
         }
+
         h3:hover {
             background-color: #cccccc;
             cursor: pointer;
         }
+
         h3 span {
             font-weight: bolder;
         }
-        #next, #reiniciar{
+
+        #next,
+        #reiniciar {
             display: block;
         }
     </style>
@@ -57,7 +66,6 @@
             <span>D</span>
             Resposta
         </h3>
-        <div class="btn btn-primary" onclick="next()">
         <div class="btn btn-primary" id="next" onclick="next()">
             Next
         </div>
@@ -66,7 +74,6 @@
         </div>
     </div>
     <script>
-
         let placar = {
             acertos: 0,
             erros: 0
@@ -90,7 +97,8 @@
                 pergunta: "Qual foi o ultimo ano que o BR ganhou a copa?",
                 respostas: ["1970", "2002", "1962", "1994"],
                 correta: 1
-            },
+            }
+            ,
             {
                 pergunta: "Qual o nome do último presidente dos Estados Unidos?",
                 respostas: ["George Bush", "Donald Trump", "Joe Biden", "Dwight Eisenhower"],
@@ -109,7 +117,9 @@
             lsPergunta = JSON.parse(baseQuiz);
         }
         let quiz = {};
+        embaralharPerguntas();
         function carregarQuiz(nPergunta) {
+            embaralharRespotas(nPergunta);
             quiz = lsPergunta[nPergunta];
             document.querySelector('h2').innerHTML = quiz.pergunta;
             for (let i = 0; i < 4; i++) {
@@ -130,7 +140,6 @@
                 alert('Antes de ir para o próxima pergunta responda essa!');
                 return;
             }
-            if (quizAtual == lsPergunta.length - 1) return;
             if (quizAtual == lsPergunta.length - 1) {
                 fimQuiz();
                 return;
@@ -156,12 +165,44 @@
 
         function reiniciar() {
             let resp = confirm('Deseja reiniciar o Quiz?');
-            if(resp){
-                window.location.href = "/aulas/aula-0627-quiz.html";
+            if (resp) {
+                // window.location.href = "";
+                window.location.replace("");
             }
         }
+
+        function embaralharPerguntas() {
+            let listaTemporaria = [];
+            let cont = 0;
+            while (lsPergunta.length > 0) {
+                let numSorteado = Math.trunc(Math.random() * lsPergunta.length);
+                listaTemporaria[cont] = lsPergunta.splice(numSorteado, 1)[0];
+                cont++;
+            }
+            lsPergunta = listaTemporaria;
+        }
+
+        function embaralharRespotas(nPergunta) {
+            let listaTemporaria = [];
+            let quiz = lsPergunta[nPergunta];
+            let cont = 0;
+            let lsRespostas = quiz.respostas;
+            let opcaoCorreta = lsRespostas[quiz.correta];
+            console.log(opcaoCorreta);
+            while (lsRespostas.length > 0) {
+                let numSorteado = Math.trunc(Math.random() * lsRespostas.length);
+                listaTemporaria[cont] = lsRespostas.splice(numSorteado,1)[0];
+                if(opcaoCorreta == listaTemporaria[cont]){
+                    quiz.correta = cont;
+                }
+                cont++;
+            }
+            quiz.respostas = listaTemporaria;
+        }
+
     </script>
 
 
 </body>
-</html>
+
+</html> 
