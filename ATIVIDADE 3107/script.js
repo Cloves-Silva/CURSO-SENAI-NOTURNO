@@ -15,8 +15,8 @@ btnTxt.addEventListener('click', () => {
             console.log(data)
             resultado.innerHTML = `
             <h3 id="container__palavra">${palavra}</h3>
-                <p id="container__significado"><span>1º</span> ${data[0].meanings[0]}</p>
-                <p id="container__significado"><span>2º</span> ${data[0].meanings[1]}</p>
+                <p id="container__significado"><span></span> ${data[0].meanings[0]}</p>
+                
             `
 
         }).catch(() => {
