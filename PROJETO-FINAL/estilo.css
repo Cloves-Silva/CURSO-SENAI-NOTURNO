@@ -1,5 +1,5 @@
 body{
-    background-color: #e29c63;
+    background-color: #ac4a4a;
 }
 
 img{
@@ -49,7 +49,7 @@ h1{
 
 .btMais, .btMenos{
     cursor: pointer;
-    color: #e66b6b;
+    color: #8cbd54;
     font-weight: bold;
     font-size: 30px;
     padding: 5px;
